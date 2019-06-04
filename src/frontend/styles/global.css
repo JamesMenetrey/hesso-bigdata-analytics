@@ -1,0 +1,35 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-widget {
+    display: block;
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+
+#map-widget .earthquake-popup {
+    margin: 5px 5px 0 5px;
+}
+#map-widget .earthquake-popup > p {
+    margin: 0;
+}
+
+/* Pimp the scroll bar, so they appear the same on Windows and Mac */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }

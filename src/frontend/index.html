@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SwissQuake</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+    <link rel="stylesheet" href="styles/global.css"></link> 
+    <link rel="stylesheet" href="styles/sidebar-widget.css"></link> 
+  </head>
+  <body>
+    <div id="wrapper" class="toggled">
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <div class="toggle">
+          <a href="#menu-toggle" id="menu-toggle"></a>
+        </div>
+
+        <p class="swissquake-title">Taxi Data Visualizer</p>
+
+        <div class="scrollable">
+        
+          <div class="box">
+              <h3>Filters</h3>
+              <p>
+                <b>Focus on:</b><br />
+                <select class="focus custom-select">
+                  <option value="customers">The best locations for customers</option>
+                  <option value="profit">The most profitable spots</option>
+                </select>
+              </p>
+
+              <p>
+                <b>Number of points of interest:</b><br />
+                <span>set to <b class="number-poi">...</b></span>
+              </p>
+              <div class="poi-slider"></div>
+          </div>
+
+        <p class="source">Source: <a href="http://www.andresmh.com/nyctaxitrips/" target="_blank">NYC Taxi Trips</a></p>
+      </div>
+  </div>
+  <!-- /#wrapper -->
+
+    <div id="map-widget"></div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Project libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/postal.js/2.0.5/postal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js"></script>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFtaWVucm9jaGF0IiwiYSI6ImNqb2hmbGxpODBoZjAzd3M2eGh6NG16Z2YifQ.6PgMsWoagSkeYr3Re-jH-w';
+    </script>
+    <!-- Project scripts -->
+    <script src="scripts/earthquakes.js"></script>
+    <script src="scripts/map-widget.js"></script>
+    <script src="scripts/sidebar-widget.js"></script>
+  </body>
+</html>

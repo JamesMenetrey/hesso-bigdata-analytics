@@ -1,0 +1,154 @@
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  right: 400px;
+  width: 0;
+  height: 100%;
+  margin-right: -400px;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+  background-color: rgba(245, 245, 245, 0.9);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+#sidebar-wrapper .toggle {
+  float: left;
+  margin-left: -24px;
+  margin-top: 15px;
+  height: 40px;
+  padding: 5px;
+  background-color: rgba(245, 245, 245, 0.98);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+#sidebar-wrapper .box {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin: 10px;
+  padding: 10px;
+}
+
+#sidebar-wrapper .scrollable {
+  height: 100%;
+  padding-bottom: 70px;
+  overflow: scroll;
+  width: 100%;
+}
+
+#sidebar-wrapper .swissquake-title {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+#sidebar-wrapper .histogram .description {
+  font-size: 14px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 400px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -400px;
+}
+
+.source {
+  margin-right: 15px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.cute-space {
+  height: 20px;
+  margin: 0;
+}
+
+.toggled .toggle>a:before {
+  content: ">";
+}
+.toggle>a:before {
+  content: "<";
+}
+.toggle>a {
+  display: block;
+  width: 14px;
+  height: 50px;
+  text-align: center;
+  color: #999;
+  font-weight: bold;
+  font-size: 20px;
+}
+.toggle>a:hover {
+  text-decoration: none;
+}
+
+.viewport {
+  cursor: pointer;
+  float: left;
+  transition: all 0.5s;
+  height: 130px;
+}
+
+.viewport:nth-child(2n) {
+  margin-right: 10px;
+}
+
+.viewport:hover {
+  opacity: 0.8;
+}
+
+.viewport > .image-wrapper > img {
+  height: 120px;
+  width: 170px;
+}
+
+.viewport > .label {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: relative;
+  bottom: 50px;
+  padding: 5px;
+  text-shadow: rgba(0,0,0,0.7) 0px 1px 8px;
+  width: 170px;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-right: 0;
+  }
+  #wrapper.toggled {
+    padding-right: 400px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 400px;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
