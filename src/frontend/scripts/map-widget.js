@@ -19,9 +19,9 @@ $(function() {
             });
 
             // fit to switzerland bounds
-            self.map.fitBounds([[-74.24354116993825, 40.50214590272583], [-73.77490985242169, 40.75977082462501]], {
+            self.map.fitBounds([[-74.24354116993825, 40.50214590272583], [-73.77490985242169, 40.9]], {
                 padding: 30,
-				zoom: 11,
+				zoom: 10.5,
             });
 
             // prevent user to scroll out Swiss territory
