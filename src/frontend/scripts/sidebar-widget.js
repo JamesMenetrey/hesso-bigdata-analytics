@@ -25,12 +25,12 @@ $(function() {
         };
 
         var initPoiSlider = function () {
-            updatePoiLabels(3);
+            updatePoiLabels(1);
             self.$container.find('.poi-slider').slider({
                 range: false,
-                min: 3,
-                max: 10,
-                step: 2,
+                min: 1,
+                max: 20,
+                step: 1,
                 slide: function (event, ui) {
                     updatePoiLabels(ui.value);
                 },

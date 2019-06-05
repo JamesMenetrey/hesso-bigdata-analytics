@@ -1,3 +1,8 @@
+var files = {
+    customers: [3, 5, 10, 15],
+    profit: [3, 5],
+};
+
 var Datastore = (function () {
     var self = this;
 
@@ -7,27 +12,22 @@ var Datastore = (function () {
 
     self.init = function () {
         $.when(
-            $.getJSON('data/pickups.geojson', function(d) {
-                data['pickups'] = d;
-            }),
+            _.merge(
 
-            $.getJSON('data/customers-clusters-3.geojson', function(d) {
-                data['customers-clusters-3'] = d;
-            }),
+                $.getJSON('data/pickups.geojson', function (d) {
+                    data['pickups'] = d;
+                }),
 
-            $.getJSON('data/customers-clusters-5.geojson', function(d) {
-                data['customers-clusters-5'] = d;
-            }),
+                _.map(files, function (v, name) {
+                    _.map(v, function (k) {
+                        $.getJSON('data/'+name+'-clusters-'+k+'.geojson', function (d) {
+                            data[name+'-clusters-'+k] = d;
+                        })
+                    })
+                })
 
-            $.getJSON('data/profit-clusters-3.geojson', function(d) {
-                data['profit-clusters-3'] = d;
-            }),
-
-            $.getJSON('data/profit-clusters-5.geojson', function(d) {
-                data['profit-clusters-5'] = d;
-            }),
-
-        ).then(function() {
+            )
+        ).then(function () {
             _.each(listeners, function (fn) {
                 fn.call();
             });

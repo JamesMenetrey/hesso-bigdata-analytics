@@ -6,7 +6,7 @@ $(function() {
 
         var cluster = {
             focus: 'customers',
-            numberPoi: 3,
+            numberPoi: 15,
         };
         var currentLayer = null;
 
@@ -25,9 +25,9 @@ $(function() {
             });
 
             // prevent user to scroll out Swiss territory
-            // var sw = new mapboxgl.LngLat(-77, 39);
-            // var ne = new mapboxgl.LngLat(-70, 42);
-            // self.map.setMaxBounds(new mapboxgl.LngLatBounds(sw, ne));
+            var sw = new mapboxgl.LngLat(-77, 39);
+            var ne = new mapboxgl.LngLat(-70, 42);
+            self.map.setMaxBounds(new mapboxgl.LngLatBounds(sw, ne));
 
             self.map.on('load', function () {
                 window.datastore.ready(function () {
@@ -71,6 +71,11 @@ $(function() {
                 },                 
             });
 
+            var popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false
+            });
+
             // add clusters layers
             _.forEach(_.filter(names, function(name) { return !_.startsWith(name, 'pickups'); }), function(name) {
                 map.addLayer({
@@ -86,16 +91,41 @@ $(function() {
                         'visibility': 'none',
                     },
                 });
+
+                map.on('mouseenter', name, function (e) {
+                    map.getCanvas().style.cursor = 'pointer';
+                    
+                    var coordinates = e.features[0].geometry.coordinates.slice();
+
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                    }
+                     
+                    popup
+                        .setLngLat(coordinates)
+                        .setHTML(coordinates)
+                        .addTo(map);
+                });
+
+                map.on('mouseleave', name, function() {
+                    map.getCanvas().style.cursor = '';
+                    popup.remove();
+                });
             });
         };
 
         var updateLayer = function () {
             var newLayer = cluster.focus+'-clusters-'+cluster.numberPoi;
-            if (!_.isNull(currentLayer)) {
-                map.setLayoutProperty(currentLayer, 'visibility', 'none');
+            if (typeof map.getLayer(newLayer) !== 'undefined') {
+                if (!_.isNull(currentLayer)) {
+                    map.setLayoutProperty(currentLayer, 'visibility', 'none');
+                }
+                map.setLayoutProperty(newLayer, 'visibility', 'visible');
+                currentLayer = newLayer;
             }
-            map.setLayoutProperty(newLayer, 'visibility', 'visible');
-            currentLayer = newLayer;
 		}
 
         return self;
