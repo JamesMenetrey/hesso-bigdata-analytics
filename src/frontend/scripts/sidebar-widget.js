@@ -10,7 +10,7 @@ $(function() {
 
             initToggle();
 
-            window.earthquakes.ready(function () {
+            window.datastore.ready(function () {
                 initPoiSlider();
             });
         };
@@ -26,9 +26,7 @@ $(function() {
                     updatePoiLabels(ui.value);
                 },
                 change: function (event, ui) {
-                    window.channel.publish('earthquakes.filtered', {
-                        magnitude: { min: ui.value }
-                    });
+                    
                 }
             });
         }
