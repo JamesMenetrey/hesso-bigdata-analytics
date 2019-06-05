@@ -7,6 +7,7 @@ $(function() {
         var cluster = {
             focus: 'customers',
             numberPoi: 2,
+            pickups: true,
         };
         var currentLayer = null;
 
@@ -43,6 +44,9 @@ $(function() {
                 if (!_.isUndefined(_cluster.numberPoi)) {
                     cluster.numberPoi = _cluster.numberPoi;
                 }
+                if (!_.isUndefined(_cluster.pickups)) {
+                    cluster.pickups = _cluster.pickups;
+                }
                 updateLayer();
             });
         };
@@ -68,7 +72,10 @@ $(function() {
                     'circle-radius': 4.0,
                     'circle-opacity': 0.8,
                     'circle-color': '#3857dd',
-                },                 
+                },
+                'layout': {
+                    'visibility': 'none',
+                },              
             });
 
             var popup = new mapboxgl.Popup({
@@ -118,6 +125,8 @@ $(function() {
         };
 
         var updateLayer = function () {
+            map.setLayoutProperty('pickups', 'visibility', cluster.pickups ? 'visible' : 'none');
+
             if (!_.isNull(currentLayer)) {
                 map.setLayoutProperty(currentLayer, 'visibility', 'none');
             }

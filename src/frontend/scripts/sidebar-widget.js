@@ -11,15 +11,18 @@ $(function() {
             initToggle();
 
             window.datastore.ready(function () {
-                initFocusSelector();
                 initPoiSlider();
-            });
-        };
 
-        var initFocusSelector = function () {
-            self.$container.find('select.focus').change(function () {
-                window.channel.publish('cluster.changed', {
-                    focus: this.value,
+                self.$container.find('select.focus').change(function () {
+                    window.channel.publish('cluster.changed', {
+                        focus: this.value,
+                    });
+                });
+
+                self.$container.find('input.pickups').change(function () {
+                    window.channel.publish('cluster.changed', {
+                        pickups: $(this).prop('checked'),
+                    });
                 });
             });
         };
