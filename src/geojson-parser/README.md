@@ -4,8 +4,7 @@ Transforms a json exported by the machine learning algorithm into a GeoJSON file
 # How to run
 
 ```sh
-cd GeoJsonParser
-dotnet run file.json
+dotnet compiled/GeoJsonParser.dll
 ```
 
 The GeoJSON is given in stdout.
