@@ -33,12 +33,12 @@ $(function() {
                 step: 1,
                 slide: function (event, ui) {
                     updatePoiLabels(ui.value);
-                },
-                change: function (event, ui) {
                     window.channel.publish('cluster.changed', {
                         numberPoi: ui.value,
                     });
-                }
+                },
+                // change: function (event, ui) {
+                // }
             });
         };
 

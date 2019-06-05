@@ -6,7 +6,7 @@ $(function() {
 
         var cluster = {
             focus: 'customers',
-            numberPoi: 15,
+            numberPoi: 1,
         };
         var currentLayer = null;
 
@@ -118,11 +118,12 @@ $(function() {
         };
 
         var updateLayer = function () {
+            if (!_.isNull(currentLayer)) {
+                map.setLayoutProperty(currentLayer, 'visibility', 'none');
+            }
+
             var newLayer = cluster.focus+'-clusters-'+cluster.numberPoi;
             if (typeof map.getLayer(newLayer) !== 'undefined') {
-                if (!_.isNull(currentLayer)) {
-                    map.setLayoutProperty(currentLayer, 'visibility', 'none');
-                }
                 map.setLayoutProperty(newLayer, 'visibility', 'visible');
                 currentLayer = newLayer;
             }
