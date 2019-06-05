@@ -11,7 +11,16 @@ $(function() {
             initToggle();
 
             window.datastore.ready(function () {
+                initFocusSelector();
                 initPoiSlider();
+            });
+        };
+
+        var initFocusSelector = function () {
+            self.$container.find('select.focus').change(function () {
+                window.channel.publish('cluster.changed', {
+                    focus: this.value,
+                });
             });
         };
 
@@ -19,22 +28,24 @@ $(function() {
             updatePoiLabels(3);
             self.$container.find('.poi-slider').slider({
                 range: false,
-                min: 3, 
+                min: 3,
                 max: 10,
-                step: 1,
+                step: 2,
                 slide: function (event, ui) {
                     updatePoiLabels(ui.value);
                 },
                 change: function (event, ui) {
-                    
+                    window.channel.publish('cluster.changed', {
+                        numberPoi: ui.value,
+                    });
                 }
             });
-        }
+        };
 
         var updatePoiLabels = function (min) {
             self.$container.find('.number-poi').text(min);
         };
-        
+
         var initToggle = function () {
             self.$container.find("#menu-toggle").click(function (e) {
                 e.preventDefault();

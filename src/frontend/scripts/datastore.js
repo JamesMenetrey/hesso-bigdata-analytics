@@ -19,6 +19,14 @@ var Datastore = (function () {
                 data['customers-clusters-5'] = d;
             }),
 
+            $.getJSON('data/profit-clusters-3.geojson', function(d) {
+                data['profit-clusters-3'] = d;
+            }),
+
+            $.getJSON('data/profit-clusters-5.geojson', function(d) {
+                data['profit-clusters-5'] = d;
+            }),
+
         ).then(function() {
             _.each(listeners, function (fn) {
                 fn.call();

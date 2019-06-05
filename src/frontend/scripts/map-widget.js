@@ -4,6 +4,12 @@ $(function() {
         var self = this;
         self.$container = undefined;
 
+        var cluster = {
+            focus: 'customers',
+            numberPoi: 3,
+        };
+        var currentLayer = null;
+
         self.init = function (containerId) {
             self.$container = $('#' + containerId);
 
@@ -25,12 +31,23 @@ $(function() {
 
             self.map.on('load', function () {
                 window.datastore.ready(function () {
-					displayLayers();
+                    initLayers();
+                    updateLayer();
 				});
-			});
+            });
+
+            window.channel.subscribe('cluster.changed', function(_cluster) {
+                if (!_.isUndefined(_cluster.focus)) {
+                    cluster.focus = _cluster.focus;
+                }
+                if (!_.isUndefined(_cluster.numberPoi)) {
+                    cluster.numberPoi = _cluster.numberPoi;
+                }
+                updateLayer();
+            });
         };
 
-        var displayLayers = function () {
+        var initLayers = function () {
             var datasets = window.datastore.getData();
             var names = _.keys(datasets);
 
@@ -48,13 +65,10 @@ $(function() {
                 'type': 'circle',
                 'source': 'pickups',
                 'paint': {
-                    'circle-radius': 3.0,
+                    'circle-radius': 4.0,
                     'circle-opacity': 0.8,
                     'circle-color': '#3857dd',
-                },
-                'layout': {
-                    'visibility': 'visible',
-                },                    
+                },                 
             });
 
             // add clusters layers
@@ -69,12 +83,20 @@ $(function() {
                         'circle-color': '#a51727',
                     },
                     'layout': {
-                        'visibility': 'visible',
-                    },                    
+                        'visibility': 'none',
+                    },
                 });
             });
-
         };
+
+        var updateLayer = function () {
+            var newLayer = cluster.focus+'-clusters-'+cluster.numberPoi;
+            if (!_.isNull(currentLayer)) {
+                map.setLayoutProperty(currentLayer, 'visibility', 'none');
+            }
+            map.setLayoutProperty(newLayer, 'visibility', 'visible');
+            currentLayer = newLayer;
+		}
 
         return self;
     })();
