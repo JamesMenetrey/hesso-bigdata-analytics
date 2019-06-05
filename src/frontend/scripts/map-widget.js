@@ -6,7 +6,7 @@ $(function() {
 
         var cluster = {
             focus: 'customers',
-            numberPoi: 1,
+            numberPoi: 2,
         };
         var currentLayer = null;
 
