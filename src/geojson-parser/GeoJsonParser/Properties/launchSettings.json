@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GeoJsonParser": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\james\\Downloads\\trip_data_3_clusters_1.json"
+    }
+  }
+}
