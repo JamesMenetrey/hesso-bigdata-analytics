@@ -19,8 +19,8 @@ $(function() {
             });
             
             // prevent user to scroll out Swiss territory
-            var sw = new mapboxgl.LngLat(-75, 40);
-            var ne = new mapboxgl.LngLat(-72.5, 41.5);
+            var sw = new mapboxgl.LngLat(-77, 39);
+            var ne = new mapboxgl.LngLat(-70, 42);
             self.map.setMaxBounds(new mapboxgl.LngLatBounds(sw, ne));
 
             self.map.on('load', function () {
