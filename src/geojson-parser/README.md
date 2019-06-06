@@ -12,7 +12,7 @@ brew cask install dotnet
 The parser can be run using:
 
 ```sh
-dotnet compiled/GeoJsonParser.dll
+dotnet compiled/GeoJsonParser.dll file.json [number-of-samples]
 ```
 
 The GeoJSON is given in stdout.
