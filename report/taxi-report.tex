@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
@@ -21,14 +21,14 @@
 \title{
 \Large{Big Data Analytics 2019}\\
 \huge{NY City Taxi Data Analysis}\\
-\large{Final laboratory}}
+\large{Project}}
 
 \author{
 Prof. Marcel Graf\\
 Prof. Nastaran Fatemi\\
 \\
 Romain Claret, Jämes Ménétrey and Damien Rochat\\
-Master of Science in Engineering\\
+MSE Master of Science in Engineering\\
 HES-SO University of Applied Sciences and Arts
 \date{\today}}
 
@@ -39,24 +39,35 @@ HES-SO University of Applied Sciences and Arts
 \clearpage
 
 \section{Introduction}
-The goal of this laboratory is to identify the most active areas from New York City, from a taxi agency point of view, in order to open new agency locations to increase profit, the reactivity of taxi arrival time and more globally the customers' satisfaction. This analysis aims to highlight two topics of interest: (1) the best locations to find out customers, and (2) identify the most profitable spots in New York City, which are the longest trips.
+The goal of this project is to identify the busiest areas from New York City, from a taxi agency perspective, in order to open new agency locations, to increase profit, the taxi availability and more globally the customers' satisfaction. This analysis aims to highlight two topics of interest:
 
-% TODO
-NEED ML?
+\begin{itemize}
+    \item Find the best spots to find customers
+    \item Identify the most profitable spots (proportional to the longest trips)
+\end{itemize}
+
+To help the authors to achieve those objectives and to handle the big data related dataset, they will be using Spark and more specifically PySpark (the Python implementation of Apache Spark), to process the data and perform machine learning.
 
 
 \section{Dataset}
-The dataset, provided by Chris Whong, is the list of trips and fares of the taxi in New York City. It is composed of 2 parts, which are themselves fragmented into 13 CSV. These parts are the trips related information (trip\_data.7z, sized 4.1GB) and the fares related to each trip (trip\_fare.7z, sized 1.72GB). Each trip contains the following information:
+The dataset, provided by Chris Whong \footnote{\url{http://www.andresmh.com/nyctaxitrips/}}, is the list of trips and fares for taxis in New York City, for the year 2013. It is composed of 2 parts, which are themselves fragmented into 12 CSV files, one per month, and for a total of 173'179'759 records.
 
 \begin{itemize}
-  \item Taxi identification
-  \item Driver identification
-  \item Start time and end time
-  \item GPS coordinates of pick up and drop off
-  \item Fare information (amount, payment type, tip)
+    \item The trips related information (trip\_data.7z, sized 4.1GB)
+    \begin{itemize}
+        \item Taxi identification
+        \item Driver identification
+        \item Start time and end time
+        \item GPS coordinates of pick up and drop off
+    \end{itemize}
+    \item The fares related information to each trip (trip\_fare.7z, sized 1.72GB)
+    \begin{itemize}
+        \item Taxi identification
+        \item Driver identification
+        \item Start time and end time
+        \item Fare information (amount, payment type, tip)
+    \end{itemize}
 \end{itemize}
-
-% TODO How many records
 
 
 \section{Preprocessing}
@@ -81,6 +92,9 @@ The second objective is similar to the first one, but it weights the location of
 
 \subsection{Features selection}
 The GPS coordinates represent the fundamental data that are used to determine the centroids of the clusters. Indeed, this project exploits the fact that the means of the GPS locations are meaningful, as they represent coordinates as well and can be plotted on a map. The data set is comprised of multiple fares values and it has been decided to sum the \emph{fare amount} and the \emph{surchage}, which correspond to an additional amount for night trips. An analysis has been performed on the distribution of the sum of fares, in order to alleviate any outliners that can harm the results. Figure \ref{fig:distribution-fares-bad} illustrates the distribution of the fares over the trips. It appears clears there is a gaussian distribution at the left of the chart and several heavy outliners distort the result. For that purpose, the maximum amount of fares has been set to 20\$, as it keeps the original form of the gaussian, as shown on Figure \ref{fig:distribution-fares-fixed}.
+
+%TODO
+max fare value is \$ WTF?? 
 
 \begin{figure}
   \centering
