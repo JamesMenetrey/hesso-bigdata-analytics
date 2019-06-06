@@ -123,35 +123,40 @@ The second objective is similar to the first one, but it weights the location of
 
 
 \subsection{Features selection}
-The GPS coordinates represent the fundamental data that are used to determine the centroids of the clusters. Indeed, this project exploits the fact that the means of the GPS locations are meaningful, as they represent coordinates as well and can be plotted on a map. The data set is comprised of multiple fares values and it has been decided to sum the \emph{fare amount} and the \emph{surchage}, which correspond to an additional amount for night trips. An analysis has been performed on the distribution of the sum of fares, in order to alleviate any outliners that can harm the results. Figure \ref{fig:distribution-fares-bad} illustrates the distribution of the fares over the trips. It appears clears there is a gaussian distribution at the left of the chart and several heavy outliners distort the result. For that purpose, the maximum amount of fares has been set to 20\$, as it keeps the original form of the gaussian, as shown on Figure \ref{fig:distribution-fares-fixed}.
-
-%TODO
-max fare value is \$ WTF?? 
+The GPS coordinates represent the fundamental data that are used to determine the centroids of the clusters. Indeed, this project exploits the fact that the means of the GPS locations are meaningful, as they represent coordinates as well and can be plotted on a map. The dataset contains multiple fares values, and it has been decided to sum the \emph{fare\_amount} and the \emph{surcharge}, which correspond to an additional amount such as night period or weekends. An analysis has been performed on the distribution of the sum of fares, in order to alleviate any outliners that can add biases to the results. Figure \ref{fig:distribution-fares-bad} illustrates the histogram of fares over the number of trips. It appears clear that there is a Gaussian distribution at the left of the chart and several heavy outliners distort the result. For that purpose, the maximum amount of fares has been set to 20\$, as it keeps the original form of the Gaussian, as shown in Figure \ref{fig:distribution-fares-fixed}. As an interesting fact, the maximum value for the fares is 158'995.8125\$, which does not make much sense.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.6\textwidth]{images/distribution-fares-bad.png}
-  \caption{The distribution of the fares over the number of trips.}
+  \caption{The histogram of the fares over the number of trips.}
   \label{fig:distribution-fares-bad}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=0.6\textwidth]{images/distribution-fares-fix.png}
-  \caption{The distribution of the fares adapted for the machine learning.}
+  \caption{The histogram of the fares used for the machine learning.}
   \label{fig:distribution-fares-fixed}
 \end{figure}
 
 
 \subsection{Algorithms}
-The K-means algorithm has been used to accomplish the two objectives of the project. The hyperparameters are detailed in the list below:
+After several tries over K-Means algorithm hyper-parameters from the PySpark library, the observed that the best performances in for our objectives were the default ones\footnote{\url{https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-mllib/spark-mllib-KMeans.html}} . For both objectives, the authors used the same default hyper-parameters, only the $k$ parameter was alternated to generated related clusters. The default parameters tried were listed below:
 
-% TODO Hyperparameters
 \begin{itemize}
-  \item $X=Y$, because ...
-  \item blaa
+  \item maxIter=20
+  \item initSteps=5
+  \item tol=1e-4
 \end{itemize}
 
+As we can see in the Figure \ref{fig:ml-cpus-max}, it was managed to use the full cpu power the machine used for the machine learning.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{images/htop-full-cpus.png}
+  \caption{htop during training}
+  \label{fig:ml-cpus-max}
+\end{figure}
 
 \subsection{Optimizations}
 \subsubsection{Sampling the fares}
