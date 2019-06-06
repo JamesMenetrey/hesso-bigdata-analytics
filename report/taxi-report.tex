@@ -11,6 +11,7 @@
 \usepackage{xfrac}
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{hyperref}
 
 
 \usepackage{setspace} % increase interline spacing slightly
@@ -93,16 +94,14 @@ max fare value is \$ WTF??
 
 \begin{figure}
   \centering
-  % TODO
-  %\includegraphics[width=0.6\textwidth]{images/distribution-fares-bad.png}
+  \includegraphics[width=0.6\textwidth]{images/distribution-fares-bad.png}
   \caption{The distribution of the fares over the number of trips.}
   \label{fig:distribution-fares-bad}
 \end{figure}
 
 \begin{figure}
   \centering
-  % TODO
-  %\includegraphics[width=0.6\textwidth]{images/distribution-fares-fix.png}
+  \includegraphics[width=0.6\textwidth]{images/distribution-fares-fix.png}
   \caption{The distribution of the fares adapted for the machine learning.}
   \label{fig:distribution-fares-fixed}
 \end{figure}
@@ -119,7 +118,7 @@ The K-means algorithm has been used to accomplish the two objectives of the proj
 
 
 \subsection{Optimizations}
-\subsection{Sampling the fares}
+\subsubsection{Sampling the fares}
 The computation of the centroids of the second objective have been optimized to take into account the fares of the trips. Indeed, the algorithm of K-means implemented in spark does not provide a way to weight the records differently, based on a value, which would be the flare in the case of the project. The intuitive solution to solve introduction the notion of weight has been to duplicate each record proportionally of its amount of fare. Thanks to this process, a given record has a stronger attraction with the centroids. Obviously, creating new records of amount equal to the fares complexify drastically the initial model, as it increased its size of data set of 2'575\%. That size is so large that it took days to compute a single K-means.
 
 The sampling of the fares has been introduced to circumvent that issue. In a similar process of the sampling of music by famous compression algorithms such as MP3, the fares have been grouped by adjacent values and the index of the group has been used instead of the value of the amount, in order to weight in a lighter way the records. Figure \ref{fig:distribution-fares-sampled} illustrates that the fares have been sampled using three groups. The index of the groups are then used to determine how much time the record must be duplicated, in order to generate to have a stronger gravity.
