@@ -123,7 +123,7 @@ The second objective is similar to the first one, but it weights the location of
 
 
 \subsection{Features selection}
-The GPS coordinates represent the fundamental data that are used to determine the centroids of the clusters. Indeed, this project exploits the fact that the means of the GPS locations are meaningful, as they represent coordinates as well and can be plotted on a map. The dataset contains multiple fares values, and it has been decided to sum the \emph{fare\_amount} and the \emph{surcharge}, which correspond to an additional amount such as night period or weekends. An analysis has been performed on the distribution of the sum of fares, in order to alleviate any outliners that can add biases to the results. Figure \ref{fig:distribution-fares-bad} illustrates the histogram of fares over the number of trips. It appears clear that there is a Gaussian distribution at the left of the chart and several heavy outliners distort the result. For that purpose, the maximum amount of fares has been set to 20\$, as it keeps the original form of the Gaussian, as shown in Figure \ref{fig:distribution-fares-fixed}. As an interesting fact, the maximum value for the fares is 158'995.8125\$, which does not make much sense.
+The GPS coordinates represent the fundamental data that are used to determine the centroids of the clusters. Indeed, this project exploits the fact that the means of the GPS locations are meaningful, as they represent coordinates as well and can be plotted on a map. The dataset contains multiple fares values, and it has been decided to sum the \emph{fare\_amount} and the \emph{surcharge}, which correspond to an additional amount such as night period or weekends. An analysis has been performed on the distribution of the sum of fares, in order to alleviate any outliners that can add biases to the results. Figure \ref{fig:distribution-fares-bad} illustrates the histogram of fares over the number of trips. It appears clear that there is a Gaussian distribution at the left of the chart and several heavy outliners distort the result. For that purpose, the maximum amount of fares has been set to 20\$, as it keeps the original form of the Gaussian, as shown in Figure \ref{fig:distribution-fares-capped}. As an interesting fact, the maximum value for the fares is 158'995.8125\$, which does not make much sense as seen on Figure \ref{fig:distribution-fares}.
 
 \begin{figure}
   \centering
@@ -134,9 +134,16 @@ The GPS coordinates represent the fundamental data that are used to determine th
 
 \begin{figure}
   \centering
+  \includegraphics[width=0.6\textwidth]{images/distribution-fares-to-100.png}
+  \caption{The histogram of the fares capped at 100\$.}
+  \label{fig:distribution-fares-capped}
+\end{figure}
+
+\begin{figure}
+  \centering
   \includegraphics[width=0.6\textwidth]{images/distribution-fares-fix.png}
-  \caption{The histogram of the fares used for the machine learning.}
-  \label{fig:distribution-fares-fixed}
+  \caption{The full histogram of the fares including meaningless values.}
+  \label{fig:distribution-fares}
 \end{figure}
 
 
@@ -175,7 +182,7 @@ As a solution to increase the speed of the K-Means clustering, we sampled the fa
 \section{Testing and evaluation}
 
 \section{Results}
-The locations of the taxi agencies depending on the value $k$ vary a lot and one result is not better than another one, as it depends on the company who would like to expand. Thereby, a Web application has been created to visualize the centroids on an interactive map.\footnote{The Web application is located at \url{https://zenlulz.github.io/hesso-bigdata-analytics/}.} The view can be adapted using the right pane, which enables the users to select one of the two objectives (by the highest number of customers or the most profitable spots). The red circles represent the location of the centroids, in other words the locations of the taxi agencies. Another feature has been implemented to visualize an excerpt of the pick up locations, highlighted by blue circles.
+The suggested locations for the taxi agencies are depending on the $k$ value, which varies a lot, implying that it is difficult to provide a solution better than another. Indeed, it would depend on the company's strategy for expansion. Thereby, a Web application has been created to visualize the centroids on an interactive map.\footnote{The web application is located at \url{https://zenlulz.github.io/hesso-bigdata-analytics/}.} The view can be adapted using the right pane, which enables the users to select one of the two objectives (by the highest number of customers or by the most profitable spots). The red circles represent the location of the centroids; in other words, the suggested locations for the taxi agencies. Another feature has been implemented to visualize an excerpt of the pickup locations, highlighted by blue circles.
 
 \section{Conclusion}
 \subsection{Next steps}
