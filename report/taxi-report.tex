@@ -70,6 +70,40 @@ The dataset, provided by Chris Whong \footnote{\url{http://www.andresmh.com/nyct
     \end{itemize}
 \end{itemize}
 
+\textbf{trip\_data.printSchema()}
+\begin{verbatim}
+root
+ |-- vendor_id: string (nullable = true)
+ |-- rate_code: string (nullable = true)
+ |-- store_and_fwd_flag: string (nullable = true)
+ |-- pickup_datetime: string (nullable = true)
+ |-- dropoff_datetime: string (nullable = true)
+ |-- passenger_count: string (nullable = true)
+ |-- trip_time_in_secs: string (nullable = true)
+ |-- trip_distance: string (nullable = true)
+ |-- pickup_longitude: string (nullable = true)
+ |-- pickup_latitude: string (nullable = true)
+ |-- dropoff_longitude: string (nullable = true)
+ |-- dropoff_latitude: string (nullable = true)
+ \end{verbatim}
+ 
+
+\textbf{trip\_fare.printSchema()}
+\begin{verbatim}
+ root
+ |-- medallion: string (nullable = true)
+ |-- hack_license: string (nullable = true)
+ |-- vendor_id: string (nullable = true)
+ |-- pickup_datetime: timestamp (nullable = true)
+ |-- payment_type: string (nullable = true)
+ |-- fare_amount: double (nullable = true)
+ |-- surcharge: double (nullable = true)
+ |-- mta_tax: double (nullable = true)
+ |-- tip_amount: double (nullable = true)
+ |-- tolls_amount: double (nullable = true)
+ |-- total_amount: double (nullable = true)
+ \end{verbatim}
+
 \section{Preprocessing}
 This section covers the manipulations performed to clean up the data in order to make it eligible to be processed by the machine learning algorithms.
 
