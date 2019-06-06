@@ -15,6 +15,13 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{makecell}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
 
 
 \usepackage{setspace} % increase interline spacing slightly
@@ -54,7 +61,7 @@ To help the authors to achieve those objectives and to handle the big data relat
 
 
 \section{Dataset}
-The dataset, provided by Chris Whong \footnote{\url{http://www.andresmh.com/nyctaxitrips/}}, is the list of trips and fares for taxis in New York City, for the year 2013. It is composed of 2 parts, which are themselves fragmented into 12 CSV files, one per month, and for a total of 173'179'759 records.
+The dataset, provided by Chris Whong \footnote{The dataset can be found at \url{http://www.andresmh.com/nyctaxitrips/}}, is the list of trips and fares for taxis in New York City, for the year 2013. It is composed of 2 parts, which are themselves fragmented into 12 CSV files, one per month, and for a total of 173'179'759 records.
 
 \begin{itemize}
     \item The trips related information (trip\_data.7z, sized 4.1GB)
