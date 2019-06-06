@@ -12,6 +12,9 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{makecell}
 
 
 \usepackage{setspace} % increase interline spacing slightly
@@ -70,39 +73,31 @@ The dataset, provided by Chris Whong \footnote{\url{http://www.andresmh.com/nyct
     \end{itemize}
 \end{itemize}
 
-\textbf{trip\_data.printSchema()}
-\begin{verbatim}
-root
- |-- vendor_id: string (nullable = true)
- |-- rate_code: string (nullable = true)
- |-- store_and_fwd_flag: string (nullable = true)
- |-- pickup_datetime: string (nullable = true)
- |-- dropoff_datetime: string (nullable = true)
- |-- passenger_count: string (nullable = true)
- |-- trip_time_in_secs: string (nullable = true)
- |-- trip_distance: string (nullable = true)
- |-- pickup_longitude: string (nullable = true)
- |-- pickup_latitude: string (nullable = true)
- |-- dropoff_longitude: string (nullable = true)
- |-- dropoff_latitude: string (nullable = true)
- \end{verbatim}
- 
 
-\textbf{trip\_fare.printSchema()}
-\begin{verbatim}
- root
- |-- medallion: string (nullable = true)
- |-- hack_license: string (nullable = true)
- |-- vendor_id: string (nullable = true)
- |-- pickup_datetime: timestamp (nullable = true)
- |-- payment_type: string (nullable = true)
- |-- fare_amount: double (nullable = true)
- |-- surcharge: double (nullable = true)
- |-- mta_tax: double (nullable = true)
- |-- tip_amount: double (nullable = true)
- |-- tolls_amount: double (nullable = true)
- |-- total_amount: double (nullable = true)
- \end{verbatim}
+
+\subsection{Structure}
+\begin{tabularx}{\textwidth}{XX}
+  \toprule
+  Data structure of \texttt{trip\_data} & Data structure of \texttt{trip\_fares}\\
+  \midrule
+    \verb/root/ & \verb/root/\\
+    \verb/|- medallion: string/ & \verb/|- medallion: string/\\
+    \verb/|- hack_license: string/ & \verb/|- hack_license: string/\\
+    \verb/|- vendor_id: string/ & \verb/|- vendor_id: string/\\
+    \verb/|- rate_code: string/ & \verb/|- pickup_datetime: timestamp/\\
+    \verb/|- store_and_fwd_flag: string/ & \verb/|- payment_type: string/\\
+    \verb/|- pickup_datetime: string/ & \verb/|- fare_amount: double/\\
+    \verb/|- dropoff_datetime: string/ & \verb/|- surcharge: double/\\
+    \verb/|- passenger_count: string/ & \verb/|- mta_tax: double/\\
+    \verb/|- trip_time_in_secs: string/ & \verb/|- tip_amount: double/\\
+    \verb/|- trip_distance: string/ & \verb/|- tolls_amount: double/\\
+    \verb/|- pickup_longitude: string/ & \verb/|- total_amount: double/\\
+    \verb/|- pickup_latitude: string/ &\\
+    \verb/|- dropoff_longitude: string/ &\\
+    \verb/|- dropoff_latitude: string/ &\\
+  \bottomrule
+\end{tabularx}
+
 
 \section{Preprocessing}
 This section covers the manipulations performed to clean up the data in order to make it eligible to be processed by the machine learning algorithms.
