@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DataWalker": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_1.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_2.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_3.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_4.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_5.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_6.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_7.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_8.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_9.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_10.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_11.csv C:\\Users\\james\\Downloads\\trip\\curated\\trip_curated_12.csv"
+    }
+  }
+}

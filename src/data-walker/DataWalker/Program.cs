@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace DataWalker
 {
     /// <summary>
-    /// Syntax: dotnet DataWalker.dll file.csv
+    /// Syntax: dotnet DataWalker.dll files.csv..
     /// </summary>
     class Program
     {
@@ -13,35 +14,40 @@ namespace DataWalker
 
             if (args.Length < 1)
             {
-                Console.WriteLine("Invalid argument. Syntax: dotnet DataWalker.dll <file.csv>");
+                Console.WriteLine("Invalid argument. Syntax: dotnet DataWalker.dll files.csv..");
                 return;
             }
 
-            using (var input = File.OpenRead(args[0]))
-            using (var reader = new StreamReader(input))
-            using (var output = File.OpenWrite(args[0] + "_out"))
-            using (var writer = new StreamWriter(output))
+            Parallel.ForEach(args, path =>
             {
-                while (!reader.EndOfStream)
+                using (var input = File.OpenRead(path))
+                using (var reader = new StreamReader(input))
+                using (var output = File.OpenWrite(path + "_out"))
+                using (var writer = new StreamWriter(output))
                 {
-                    var line = reader.ReadLine();
-
-                    if (line != null)
+                    while (!reader.EndOfStream)
                     {
-                        var splitLine = line.Split(',');
+                        var line = reader.ReadLine();
 
-                        if (double.TryParse(splitLine[1], out double price))
+                        if (line != null)
                         {
-                            var priceCeil = Math.Ceiling(price);
+                            var splitLine = line.Split(',');
 
-                            for (int i = 0; i < priceCeil; i++)
+                            if (double.TryParse(splitLine[1], out double price) && price <= 20)
                             {
-                                writer.WriteLine($"{splitLine[1]},{splitLine[2]},{splitLine[3]}");
+                                // Sampling of 5 parts (20/4)
+                                var limitIteration = Math.Ceiling(price / 4);
+
+                                for (int i = 0; i < limitIteration; i++)
+                                {
+                                    writer.WriteLine($"{splitLine[1]},{splitLine[2]},{splitLine[3]}");
+                                }
                             }
                         }
                     }
                 }
-            }
+            });
+
         }
     }
 }
