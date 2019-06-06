@@ -69,7 +69,6 @@ The dataset, provided by Chris Whong \footnote{\url{http://www.andresmh.com/nyct
     \end{itemize}
 \end{itemize}
 
-
 \section{Preprocessing}
 This section covers the manipulations performed to clean up the data in order to make it eligible to be processed by the machine learning algorithms.
 
@@ -120,8 +119,17 @@ The K-means algorithm has been used to accomplish the two objectives of the proj
 
 
 \subsection{Optimizations}
-% TODO sampling
+\subsection{Sampling the fares}
+The computation of the centroids of the second objective have been optimized to take into account the fares of the trips. Indeed, the algorithm of K-means implemented in spark does not provide a way to weight the records differently, based on a value, which would be the flare in the case of the project. The intuitive solution to solve introduction the notion of weight has been to duplicate each record proportionally of its amount of fare. Thanks to this process, a given record has a stronger attraction with the centroids. Obviously, creating new records of amount equal to the fares complexify drastically the initial model, as it increased its size of data set of 2'575\%. That size is so large that it took days to compute a single K-means.
 
+The sampling of the fares has been introduced to circumvent that issue. In a similar process of the sampling of music by famous compression algorithms such as MP3, the fares have been grouped by adjacent values and the index of the group has been used instead of the value of the amount, in order to weight in a lighter way the records. Figure \ref{fig:distribution-fares-sampled} illustrates that the fares have been sampled using three groups. The index of the groups are then used to determine how much time the record must be duplicated, in order to generate to have a stronger gravity.
+
+\begin{figure}
+  \centering
+  %\includegraphics[]{images/distribution-fares-sampled-png}
+  \caption{The sampled distribution of fares.}
+  \label{fig:distribution-fares-sampled}
+\end{figure}
 
 
 \section{Testing and evaluation}
