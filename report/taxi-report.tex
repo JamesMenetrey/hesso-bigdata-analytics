@@ -71,20 +71,16 @@ The dataset, provided by Chris Whong \footnote{\url{http://www.andresmh.com/nyct
 
 
 \section{Preprocessing}
-This section covers the manipulations performed to clean up the data, in order to make it eligible to be processed by the machine learning algorithms.
-
+This section covers the manipulations performed to clean up the data in order to make it eligible to be processed by the machine learning algorithms.
 
 \subsection{Out of bound GPS coordinates}
-After visualizing the GPS coordinates on an interactive map, several of the trips that were out of the bounds of New York City. They represented 1.75\% of the trips. It has been decided to drop those trips' information in order to keep the centroids of the clusters within the city.
-
+After visualizing the GPS coordinates on an interactive map, several of the trips were out of the bounds of New York City. They represented about 1.75\% of the trips. As those trips were not related to our objectives, the trips initiated out of NYC were drop in order to keep the clusters' centroids within the city.
 
 \subsection{Invalid fares}
-Some of the fares of the trips were considered non valid, meaning that the value was either null or equal to zero. They represented X.XX\% of the trips. The fares are used for the second objective, which determines the most profitable spots to set up taxi centrals. Therefore, those records have been removed for the second objective.
-
-
+Some of the trip fares were considered invalid; indeed, their values were either null or equal to zero. They represented about X.XX\% of the records. The fares are used for the second objective, which determines the most profitable spots to set up taxi agencies or pickup spots. Therefore, those records were curated for the second objective.
 
 \section{Machine learning}
-The project relied heavily on machine learning for the two objectives. As the first objective is to determine the best locations for building taxi centrals, a good approach is to create clusters of customers per region. the centroid of these clusters inherently become the taxi centrals. This can be achieved thanks to the K-means algorithm. The hyperparameter $k$ is the number of clusters. Obviously, its value depends on how many centrals the taxi company is willing to open. For that purpose, an interval of values have been selected, so the company can review the results and decide their expansion strategy based on the what makes more sense.
+The project relied heavily on machine learning for the two objectives. As the first objective is to determine the best locations for building taxi agencies, a good approach is to create customers clusters per region. The centroid of these clusters inherently become the taxi best spots; those clusters are calculated via the K-Means algorithm. The number of clusters required can be hyper-parametered via the value of $k$. The number of clusters depends on how many agencies the taxi company is willing to open. For that purpose, an interval of values have been selected, so the company can review the results and decide their expansion strategy based on what makes more sense.
 
 The second objective is similar to the first one, but it weights the location of the customers with the fares they have paid for the trip.
 
