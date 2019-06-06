@@ -40,11 +40,14 @@ HES-SO University of Applied Sciences and Arts
 \clearpage
 
 \section{Introduction}
-The goal of this laboratory is to identify the most used areas from New York City, from a taxi agency point of view, to open new agency locations, in order to increase profit and customer satisfaction. This analysis aims to highlight two topics of interest: (1) the best locations to find out customers, and (2) identify the most profitable spots in New York City, which are the longest trips.
+The goal of this laboratory is to identify the most active areas from New York City, from a taxi agency point of view, in order to open new agency locations to increase profit, the reactivity of taxi arrival time and more globally the customers' satisfaction. This analysis aims to highlight two topics of interest: (1) the best locations to find out customers, and (2) identify the most profitable spots in New York City, which are the longest trips.
+
+% TODO
+NEED ML?
 
 
 \section{Dataset}
-The dataset, provided by Chris Whong, is the list of trips and fares of the taxi in New York City. It is composed of 2 parts, which are themselves fragmented into 13 CVS. These parts are the trips related information (trip\_data.7z, sized 1.72GB) and the fares related to each trip (trip\_fare.7z, sized 4.1GB). Each trip contains the following information:
+The dataset, provided by Chris Whong, is the list of trips and fares of the taxi in New York City. It is composed of 2 parts, which are themselves fragmented into 13 CSV. These parts are the trips related information (trip\_data.7z, sized 4.1GB) and the fares related to each trip (trip\_fare.7z, sized 1.72GB). Each trip contains the following information:
 
 \begin{itemize}
   \item Taxi identification
@@ -54,17 +57,68 @@ The dataset, provided by Chris Whong, is the list of trips and fares of the taxi
   \item Fare information (amount, payment type, tip)
 \end{itemize}
 
+% TODO How many records
 
-\section{Pre-processing and features selection}
+
+\section{Preprocessing}
+This section covers the manipulations performed to clean up the data, in order to make it eligible to be processed by the machine learning algorithms.
+
+
+\subsection{Out of bound GPS coordinates}
+After visualizing the GPS coordinates on an interactive map, several of the trips that were out of the bounds of New York City. They represented 1.75\% of the trips. It has been decided to drop those trips' information in order to keep the centroids of the clusters within the city.
+
+
+\subsection{Invalid fares}
+Some of the fares of the trips were considered non valid, meaning that the value was either null or equal to zero. They represented X.XX\% of the trips. The fares are used for the second objective, which determines the most profitable spots to set up taxi centrals. Therefore, those records have been removed for the second objective.
+
 
 
 \section{Machine learning}
+The project relied heavily on machine learning for the two objectives. As the first objective is to determine the best locations for building taxi centrals, a good approach is to create clusters of customers per region. the centroid of these clusters inherently become the taxi centrals. This can be achieved thanks to the K-means algorithm. The hyperparameter $k$ is the number of clusters. Obviously, its value depends on how many centrals the taxi company is willing to open. For that purpose, an interval of values have been selected, so the company can review the results and decide their expansion strategy based on the what makes more sense.
+
+The second objective is similar to the first one, but it weights the location of the customers with the fares they have paid for the trip.
+
+
+
+\subsection{Features selection}
+The GPS coordinates represent the fundamental data that are used to determine the centroids of the clusters. Indeed, this project exploits the fact that the means of the GPS locations are meaningful, as they represent coordinates as well and can be plotted on a map. The data set is comprised of multiple fares values and it has been decided to sum the \emph{fare amount} and the \emph{surchage}, which correspond to an additional amount for night trips. An analysis has been performed on the distribution of the sum of fares, in order to alleviate any outliners that can harm the results. Figure \ref{fig:distribution-fares-bad} illustrates the distribution of the fares over the trips. It appears clears there is a gaussian distribution at the left of the chart and several heavy outliners distort the result. For that purpose, the maximum amount of fares has been set to 20\$, as it keeps the original form of the gaussian, as shown on Figure \ref{fig:distribution-fares-fixed}.
+
+\begin{figure}
+  \centering
+  % TODO
+  %\includegraphics[width=0.6\textwidth]{images/distribution-fares-bad.png}
+  \caption{The distribution of the fares over the number of trips.}
+  \label{fig:distribution-fares-bad}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % TODO
+  %\includegraphics[width=0.6\textwidth]{images/distribution-fares-fix.png}
+  \caption{The distribution of the fares adapted for the machine learning.}
+  \label{fig:distribution-fares-fixed}
+\end{figure}
+
+
 \subsection{Algorithms}
+The K-means algorithm has been used to accomplish the two objectives of the project. The hyperparameters are detailed in the list below:
+
+% TODO Hyperparameters
+\begin{itemize}
+  \item $X=Y$, because ...
+  \item blaa
+\end{itemize}
+
+
 \subsection{Optimizations}
+% TODO sampling
+
+
 
 \section{Testing and evaluation}
 
 \section{Results}
+% Web app
 
 \section{Conclusion}
 \subsection{Next steps}
