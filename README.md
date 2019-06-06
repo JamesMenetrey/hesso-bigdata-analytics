@@ -4,15 +4,18 @@ A big data analysis project for the master's degree in engineering at the Univer
 ## Authors
 - Damien Rochat
 - Jämes Ménétrey
-- Romain Claret
-
-## Web application
-
-The Web application to visualize the taxi agencies is available on [this page](https://zenlulz.github.io/hesso-bigdata-analytics/).
+- Romain Clare
 
 ## Reporting
 
-The report can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/report/taxi-report.pdf).
+The report can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/report/taxi-report.pdf).t
+
+## Web application
+
+The Web application to visualize the taxi agencies is available on [this page](https://zenlulz.github.io/hesso-bigdata-analytics/). The figure underneath illustrates the Web application.
+
+[![The Web application](https://zenlulz.github.io/hesso-bigdata-analytics/report//images/web-app.png)](https://zenlulz.github.io/hesso-bigdata-analytics/report//images/web-app.png)
+
 
 ## Dataset [New York City Taxi Dataset](http://www.andresmh.com/nyctaxitrips/)
 List of trips. For each trip: Taxi identification Driver identification Start time and end time of trip GPS coordinates of pick up and drop off * Fare
