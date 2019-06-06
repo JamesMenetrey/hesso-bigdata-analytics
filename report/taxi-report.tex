@@ -156,7 +156,7 @@ After several tries over K-Means algorithm hyper-parameters from the PySpark lib
   \item tol=1e-4
 \end{itemize}
 
-As we can see in the Figure \ref{fig:ml-cpus-max}, it was managed to use the full cpu power the machine used for the machine learning.
+As we can see in Figure \ref{fig:ml-cpus-max}, it was managed to use the full cpu power the machine used for the machine learning.
 
 \begin{figure}
   \centering
@@ -182,7 +182,14 @@ As a solution to increase the speed of the K-Means clustering, we sampled the fa
 \section{Testing and evaluation}
 
 \section{Results}
-The suggested locations for the taxi agencies are depending on the $k$ value, which varies a lot, implying that it is difficult to provide a solution better than another. Indeed, it would depend on the company's strategy for expansion. Thereby, a Web application has been created to visualize the centroids on an interactive map.\footnote{The web application is located at \url{https://zenlulz.github.io/hesso-bigdata-analytics/}.} The view can be adapted using the right pane, which enables the users to select one of the two objectives (by the highest number of customers or by the most profitable spots). The red circles represent the location of the centroids; in other words, the suggested locations for the taxi agencies. Another feature has been implemented to visualize an excerpt of the pickup locations, highlighted by blue circles.
+The suggested locations for the taxi agencies are depending on the $k$ value, which varies a lot, implying that it is difficult to provide a solution better than another. Indeed, it would depend on the company's strategy for expansion. Thereby, a Web application has been created to visualize the centroids on an interactive map.\footnote{The web application is located at \url{https://zenlulz.github.io/hesso-bigdata-analytics/}.} The view can be adapted using the right pane, which enables the users to select one of the two objectives (by the highest number of customers or by the most profitable spots). The red circles represent the location of the centroids; in other words, the suggested locations for the taxi agencies. Another feature has been implemented to visualize an excerpt of the pickup locations, highlighted by blue circles. Figure \ref{fig:web-app} illustrates the Web application.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/web-app.png}
+  \caption{The Web application to visualize the results of the project.}
+  \label{fig:web-app}
+\end{figure}
 
 \section{Conclusion}
 \subsection{Next steps}
