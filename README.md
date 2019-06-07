@@ -12,7 +12,7 @@ The report can be downloaded at [this address](https://zenlulz.github.io/hesso-b
 
 <p align="center">
   <a href="https://zenlulz.github.io/hesso-bigdata-analytics/report/taxi-report.pdf">
-  <img width="300" height="424" style="border: 1px solid black;" src="https://zenlulz.github.io/hesso-bigdata-analytics/report/images/taxi-report-preview.png">
+  <img width="300" height="424" src="https://zenlulz.github.io/hesso-bigdata-analytics/report/images/taxi-report-preview.png">
   </a>
 </p>
 
