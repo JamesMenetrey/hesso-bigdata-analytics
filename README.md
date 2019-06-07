@@ -4,7 +4,7 @@ A big data analysis project for the master's degree in engineering at the Univer
 ## Authors
 - Damien Rochat
 - Jämes Ménétrey
-- Romain Clare
+- Romain Claret
 
 ## Reporting
 
