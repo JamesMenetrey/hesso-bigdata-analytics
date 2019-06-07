@@ -9,7 +9,8 @@ $(function() {
             numberPoi: 2,
             pickups: true,
         };
-        var currentLayer = null;
+        var currentLayer1 = null;
+        var currentLayer2 = null;
 
         self.init = function (containerId) {
             self.$container = $('#' + containerId);
@@ -85,19 +86,37 @@ $(function() {
 
             // add clusters layers
             _.forEach(_.filter(names, function(name) { return !_.startsWith(name, 'pickups'); }), function(name) {
-                map.addLayer({
-                    'id': name,
-                    'type': 'circle',
-                    'source': name,
-                    'paint': {
-                        'circle-radius': 10.0,
-                        'circle-opacity': 0.8,
-                        'circle-color': '#a51727',
-                    },
-                    'layout': {
-                        'visibility': 'none',
-                    },
-                });
+
+                if (_.startsWith(name, 'customers')) {
+                    map.addLayer({
+                        'id': name,
+                        'type': 'circle',
+                        'source': name,
+                        'paint': {
+                            'circle-radius': 10.0,
+                            'circle-opacity': 0.8,
+                            'circle-color': '#a51727',
+                        },
+                        'layout': {
+                            'visibility': 'none',
+                        },
+                    });
+                }
+                else {
+                    map.addLayer({
+                        'id': name,
+                        'type': 'circle',
+                        'source': name,
+                        'paint': {
+                            'circle-radius': 10.0,
+                            'circle-opacity': 0.8,
+                            'circle-color': '#17a529',
+                        },
+                        'layout': {
+                            'visibility': 'none',
+                        },
+                    });
+                }
 
                 map.on('mouseenter', name, function (e) {
                     map.getCanvas().style.cursor = 'pointer';
@@ -127,14 +146,27 @@ $(function() {
         var updateLayer = function () {
             map.setLayoutProperty('pickups', 'visibility', cluster.pickups ? 'visible' : 'none');
 
-            if (!_.isNull(currentLayer)) {
-                map.setLayoutProperty(currentLayer, 'visibility', 'none');
+            if (!_.isNull(currentLayer1)) {
+                map.setLayoutProperty(currentLayer1, 'visibility', 'none');
+            }
+            if (!_.isNull(currentLayer2)) {
+                map.setLayoutProperty(currentLayer2, 'visibility', 'none');
             }
 
-            var newLayer = cluster.focus+'-clusters-'+cluster.numberPoi;
-            if (typeof map.getLayer(newLayer) !== 'undefined') {
-                map.setLayoutProperty(newLayer, 'visibility', 'visible');
-                currentLayer = newLayer;
+            if (cluster.focus == 'customers' || cluster.focus == 'both') {
+                var newLayer1 = 'customers-clusters-'+cluster.numberPoi;
+                if (typeof map.getLayer(newLayer1) !== 'undefined') {
+                    map.setLayoutProperty(newLayer1, 'visibility', 'visible');
+                    currentLayer1 = newLayer1;
+                }
+            }
+
+            if (cluster.focus == 'profit' || cluster.focus == 'both') {
+                var newLayer2 = 'profit-clusters-'+cluster.numberPoi;
+                if (typeof map.getLayer(newLayer2) !== 'undefined') {
+                    map.setLayoutProperty(newLayer2, 'visibility', 'visible');
+                    currentLayer2 = newLayer2;
+                }
             }
 		}
 
