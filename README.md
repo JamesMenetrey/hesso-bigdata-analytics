@@ -10,6 +10,8 @@ A big data analysis project for the master's degree in engineering at the Univer
 
 The report can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/mse-bda-groupe-d-claret-menetrey-rochat-report.pdf).
 
+[![The documentation](https://zenlulz.github.io/hesso-bigdata-analytics/report/images/taxi-report-preview.png)](https://zenlulz.github.io/hesso-bigdata-analytics/report/taxi-report.pdf)
+
 ## Presentation
 
 The presentation can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/mse-bda-groupe-d-claret-menetrey-rochat-presentation.pdf).
@@ -19,7 +21,7 @@ The presentation can be downloaded at [this address](https://zenlulz.github.io/h
 
 The Web application to visualize the taxi agencies is available on [this page](https://zenlulz.github.io/hesso-bigdata-analytics/). The figure underneath illustrates the Web application.
 
-[![The Web application](https://zenlulz.github.io/hesso-bigdata-analytics/report//images/web-app.png)](https://zenlulz.github.io/hesso-bigdata-analytics/report//images/web-app.png)
+[![The Web application](https://zenlulz.github.io/hesso-bigdata-analytics/report/images/web-app.png)](https://zenlulz.github.io/hesso-bigdata-analytics/report//images/web-app.png)
 
 
 ## Dataset [New York City Taxi Dataset](http://www.andresmh.com/nyctaxitrips/)
