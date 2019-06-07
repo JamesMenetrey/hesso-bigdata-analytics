@@ -8,7 +8,12 @@ A big data analysis project for the master's degree in engineering at the Univer
 
 ## Reporting
 
-The report can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/report/taxi-report.pdf).t
+The report can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/mse-bda-groupe-d-claret-menetrey-rochat-report.pdf).
+
+## Presentation
+
+The presentation can be downloaded at [this address](https://zenlulz.github.io/hesso-bigdata-analytics/mse-bda-groupe-d-claret-menetrey-rochat-presentation.pdf).
+
 
 ## Web application
 
