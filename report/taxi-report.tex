@@ -208,7 +208,7 @@ It is hard to evaluate the outcome of the project, but from the authors' point o
 \section{Results}
 The suggested locations for the taxi agencies are depending on the $k$ value, which varies a lot, implying that it is difficult to provide a solution better than another. Indeed, it would depend on the company's strategy for expansion. Thereby, a Web application has been created to visualize the centroids on an interactive map.\footnote{The web application is located at \url{https://zenlulz.github.io/hesso-bigdata-analytics/}.} The view can be adapted using the right pane, which enables the users to select one of the two objectives (by the highest number of customers or by the most profitable spots). The red circles represent the location of the centroids; in other words, the suggested locations for the taxi agencies. Another feature has been implemented to visualize an excerpt of the pickup locations, highlighted by blue circles. Figure \ref{fig:web-app} illustrates the Web application.
 
-As a helper, another C\# application called \emph{GeoJsonParser}\footnot{The source code can be found in the \texttt{src} folder from the Github repository.} was written. Its purpose is to convert the coordinates of SparkML's KMeans clusters' centroids generated into the GeoJSON format supported by the interactive map component \emph{Mapbox}.
+As a helper, another C\# application called \emph{GeoJsonParser}\footnote{The source code can be found in the \texttt{src} folder from the Github repository.} was written. Its purpose is to convert the coordinates of SparkML's KMeans clusters' centroids generated into the GeoJSON format supported by the interactive map component \emph{Mapbox}.
 
 \begin{figure}
   \centering
@@ -218,6 +218,16 @@ As a helper, another C\# application called \emph{GeoJsonParser}\footnot{The sou
 \end{figure}
 
 \section{Conclusion}
+\subsection{Project}
+\begin{itemize}
+    \item The clusters of customers are also the most profitable
+    \item Using Python with PySpark was a good experience
+    \item Spark Dataframes are limited compared to the Pandas Dataframes
+    \item For specific use-cases, Spark work well out of the box for parallelization
+\end{itemize}
+
+\subsection{Personal}
+The points that the authors are agreeing on to conclude this project, taking apart that they, of course, enriched their knowledge in the following buzzwords: Big Data Analytics, Spark, Parallelization and Distribution, is that a Big Data Project is a lot of brain's puzzling. Indeed, most of the time, it does not work out of the box, and solutions state of the art are common to solve problems. Optimizing the processing time, without affecting too much the quality of the outcome are meticulous decisions made all the time. Parallelization is not magical, neither is the distribution, having enormous clusters could help, but as an everyday data engineer, it is often not a resource accessible, and tweaks have to be made to get the best outcome out of the available resources. Even with the 48 CPUs server often reached bottlenecks, and the team had to find workarounds to make it work efficiently. One of the solutions was to build custom software to help go through mutual limitations. The design thinking for problem-solving and find strategies were essential to achieve this project.
 
 
 \subsection{Next steps}
@@ -246,6 +256,13 @@ Of course, an interesting point would be to increase the amount of data to extra
     \item Using the full NYC dataset (not only 2013)
     \item Add other taxi services such as UBER
     \item Use of the weather data
+\end{itemize}
+
+\subsubsection{Technicalities}
+\begin{itemize}
+    \item Serializing the data
+    \item Try RDD
+    \item Compare SparkML and Scikit-Learn
 \end{itemize}
 
 \end{document}
